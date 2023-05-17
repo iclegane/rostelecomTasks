@@ -1,3 +1,4 @@
+const { HotModuleReplacementPlugin } = require('webpack');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require("path");
@@ -33,6 +34,7 @@ module.exports = {
         ],
     },
     plugins: [
+        new HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             template: "./src/public/index.html",
             filename: "index.html",
@@ -43,6 +45,7 @@ module.exports = {
         static: {
             directory: path.resolve(__dirname, 'src/assets'),
         },
+        historyApiFallback: true,
         compress: false,
         open: false,
         hot: true,
